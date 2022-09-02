@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+//componentes
+import Login from "./components/Login";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const theme = createTheme({
+        palette: {
+            type: "light",
+            primary: {
+                main: "#0D47A1",
+            },
+            secondary: {
+                main: "#8d6e63",
+            },
+        },
+        components: {
+            MuiButtonBase: {
+                defaultProps: {
+                    disableRipple: true,
+                },
+            },
+        },
+    });
+
+    return (
+        <ThemeProvider theme={theme}>
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/' element={<Login />} />
+                </Routes>
+            </BrowserRouter>
+        </ThemeProvider>
+    );
 }
 
 export default App;
